@@ -11,10 +11,21 @@ $router->post('/', [LoginController::class, 'login']);
 $router->post('/logout', [LoginController::class, 'logout']);
 
 //Crear cuenta
+$router->get('/crear', [LoginController::class, 'crear']);
+$router->post('/crear', [LoginController::class, 'crear']);
 
 
+//Formulario de olvide mi password
+$router->get('/olvide', [LoginController::class, 'olvide']);
+$router->post('/olvide', [LoginController::class, 'olvide']);
 
+//Colocar el nuevo password
+$router->get('/reestablecer', [LoginController::class, 'reestablecer']);
+$router->post('/reestablecer', [LoginController::class, 'reestablecer']);
 
+//Confirmacion de cuenta
+$router->get('/mensaje', [LoginController::class, 'mensaje']);
+$router->get('/confirmar', [LoginController::class, 'confirmar']);
 
 
 
