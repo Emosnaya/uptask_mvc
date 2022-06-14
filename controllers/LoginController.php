@@ -14,19 +14,25 @@ class LoginController {
         }
 
         $router->render('auth/login', [
-
+            'titulo' => 'Iniciar Sesión',
+            'alertas' => $alertas
         ]);
 
     } 
     public static function logout(){
 
     }
-    public static function crear(){
+    public static function crear(Router $router){
 
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         }
+
+        //Render a la vista
+        $router->render('auth/crear', [
+            'titulo' => 'Crear tu cuenta'
+        ]);
     } 
     public static function olvide(){
         
