@@ -1,5 +1,5 @@
 {
-    "name": "EmmanuelOsnaya/up-task_mvc",
+    "name": "emmanuelosnaya/up-task_mvc",
     "description": "Proyecto UpTask MVC, PHP 8, SASS",
     "type": "project",
     "autoload": {
