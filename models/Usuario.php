@@ -14,7 +14,7 @@ class Usuario extends ActiveRecord {
         $this->password = $args['password'] ?? '';
         $this->password2 = $args['password2'] ?? null;
         $this->token = $args['token'] ?? '';
-        $this->confirmado = $args['confirmado'] ?? '';
+        $this->confirmado = $args['confirmado'] ?? 0;
 
     }
     //Validar el nombre
@@ -34,9 +34,14 @@ class Usuario extends ActiveRecord {
             self::$alertas['error'][] = 'El password no es igual';
         }
 
-
-
-
         return self::$alertas;
+    }
+    //hashea el password
+    public function hashPassword(){
+        $this->password = password_hash($this->password, PASSWORD_BCRYPT);
+    }
+    //Generar token
+    public function crearToken(){
+        $this->token = uniqid();
     }
 }
