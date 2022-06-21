@@ -35,7 +35,36 @@ class Email {
         $contenido = '<html>';
         $contenido .= "<p><strong> Hola " . $this->nombre . "</strong> Has Creado tu cuenta en Uptask, solo debes confirmarla en el siguiente enlace<p>";
         $contenido .= "<p>Presiona aquí: <a href= 'http://localhost:3000/confirmar?token=" . $this->token . "' >Confirmar cuenta</a></p>";
-        $contenido .= "<p> Si tu no creaste esta cuenta, puedes ignorar este mensaje";
+        $contenido .= "<p> Si tu no creaste esta cuenta, puedes ignorar este mensaje</p>";
+        $contenido .= '</hmtl>';
+
+        $mail->Body = $contenido;
+
+        //Enviar email
+
+        $mail->send();
+    }
+
+    public function enviarInstrucciones(){
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = 'smtp.mailtrap.io';
+        $mail->SMTPAuth = true;
+        $mail->Port = 2525;
+        $mail->Username = '05816bfb40ab4b';
+        $mail->Password = '8df7e31bc2f0ce';
+
+        $mail->setFrom('cuentas@uptask.com');
+        $mail->addAddress('cuentas@uptask.com', 'uptask.com');
+        $mail->Subject = 'Reestablece tu password';
+
+        $mail->isHTML(TRUE);
+        $mail->CharSet = 'UTF-8';
+
+        $contenido = '<html>';
+        $contenido .= "<p><strong> Hola " . $this->nombre . "</strong> Parece que has olvidado tu password<p>";
+        $contenido .= "<p>Presiona aquí: <a href= 'http://localhost:3000/reestablecer?token=" . $this->token . "' >Reestablecer Password</a></p>";
+        $contenido .= "<p> Si tu no solicitaste esto, puedes ignorar este mensaje</p>";
         $contenido .= '</hmtl>';
 
         $mail->Body = $contenido;
