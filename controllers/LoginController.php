@@ -29,9 +29,7 @@ class LoginController {
                         $_SESSION['nombre'] = $usuario->nombre;
                         $_SESSION['email'] = $usuario->email;
                         $_SESSION['login'] = true;
-
-                        header('Location /proyectos');
-
+                        header('Location: /dashboard');
                     }else{
                         Usuario::setAlerta('error', 'Password Incorrecto');
                     }
@@ -47,7 +45,9 @@ class LoginController {
 
     } 
     public static function logout(){
-
+        session_start();
+        $_SESSION = [];
+        header('Location: /');    
     }
     public static function crear(Router $router){
         $usuario = new Usuario;
