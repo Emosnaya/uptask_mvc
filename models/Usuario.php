@@ -12,6 +12,8 @@ class Usuario extends ActiveRecord {
         $this->nombre = $args['nombre'] ?? '';
         $this->email = $args['email'] ?? '';
         $this->password = $args['password'] ?? '';
+        $this->password_actual = $args['password_actual'] ?? '';
+        $this->password_nuevo = $args['password_nuevo'] ?? '';
         $this->password2 = $args['password2'] ?? null;
         $this->token = $args['token'] ?? '';
         $this->confirmado = $args['confirmado'] ?? 0;
@@ -79,5 +81,33 @@ class Usuario extends ActiveRecord {
         }
         return self::$alertas;
     }
+    public function validarPerfil()
+    {
+        if(!$this->nombre){
+            self::$alertas['error'][] = 'El Nombre es obligatorio';
+        }
+        if(!$this->email){
+            self::$alertas['error'][] = 'El email es obligatorio';
+        }
 
+        return self::$alertas;
+    }
+    public function nuevoPassword(){
+        if(!$this->password_actual){
+            self::$alertas['error'][] = 'Introduzca el Password Actual';
+        }
+        if(!$this->password_actual){
+            self::$alertas['error'][] = 'Introduzca el Nuevo Password';
+        }
+        if(strlen($this->password_nuevo) < 6 ){
+            self::$alertas['error'][] = 'El password debe contener al menos 6 caracteres';
+        }
+
+
+        return self::$alertas;
+    }
+
+    public function comprobarPassword(): bool{
+        return password_verify($this->password_actual, $this->password);
+    }
 }
