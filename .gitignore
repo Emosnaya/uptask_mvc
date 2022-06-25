@@ -1,10 +1,10 @@
 src/
 node_modules/
-uptask_mvc.sql
+.sql
 vendor/
 package.json
 package-lock.json
 .env
 gulpfile.js
 .DS_store
-classes/Email.php
+classes/
