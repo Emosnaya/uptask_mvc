@@ -42,7 +42,7 @@ class Email {
 
             $contenido = '<html>';
             $contenido .= "<p><strong> Hola " . $this->nombre . "</strong> Has Creado tu cuenta en Uptask, solo debes confirmarla en el siguiente enlace<p>";
-            $contenido .= "<p>Presiona aquí: <a href= 'http://localhost:3000/confirmar?token=" . $this->token . "' >Confirmar cuenta</a></p>";
+            $contenido .= "<p>Presiona aquí: <a href= 'https://mysterious-ridge-57985.herokuapp.com/confirmar?token=" . $this->token . "' >Confirmar cuenta</a></p>";
             $contenido .= "<p> Si tu no creaste esta cuenta, puedes ignorar este mensaje</p>";
             $contenido .= '</hmtl>';                                //Set email format to HTML
             $mail->Subject = 'Confirma tu cuenta';
@@ -78,7 +78,7 @@ class Email {
             $mail->CharSet = 'UTF-8';
             $contenido = '<html>';
             $contenido .= "<p><strong> Hola " . $this->nombre . "</strong> Parece que has olvidado tu password<p>";
-            $contenido .= "<p>Presiona aquí: <a href= 'http://localhost:3000/reestablecer?token=" . $this->token . "' >Reestablecer Password</a></p>";
+            $contenido .= "<p>Presiona aquí: <a href= 'https://mysterious-ridge-57985.herokuapp.com//reestablecer?token=" . $this->token . "' >Reestablecer Password</a></p>";
             $contenido .= "<p> Si tu no solicitaste esto, puedes ignorar este mensaje</p>";
             $contenido .= '</hmtl>';
             $mail->Subject = 'Reestablece tu Password';
