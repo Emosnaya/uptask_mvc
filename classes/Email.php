@@ -20,20 +20,21 @@ class Email {
 
     public function enviarConfirmacion(){
 
-        $mail = new PHPMailer(true);
-
         try {
+            $mail = new PHPMailer();
             //Server setting                   //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
-            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = $_ENV['email'];                    //SMTP username
-            $mail->Password   = $_ENV['password'];                               //SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-            $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->Host       = 'smtp.gmail.com';
+            $mail->Port       = 465;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;                         //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                 //Enable SMTP authentication
+            $mail->Username   = $_ENV['EMAIL'];                  //SMTP username
+            $mail->Password   = $_ENV['PASS'];                               //SMTP password
+                     //Enable implicit TLS encryption
+                                               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
-            $mail->setFrom($_ENV['email'], 'UpTask');
+            $mail->setFrom($_ENV['EMAIL'], 'UpTask');
             $mail->addAddress($this->email, $this->nombre);     //Add a recipient
         
             //Content
@@ -50,27 +51,28 @@ class Email {
         
             $mail->send();
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            echo "error";
         }
         
     }
 
     public function enviarInstrucciones(){
 
-        $mail = new PHPMailer(true);
+        
 
         try {
+            $mail = new PHPMailer();
             //Server settings                    //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
             $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = $_ENV['email'];                     //SMTP username
-            $mail->Password   = $_ENV['password'];                              //SMTP password
+            $mail->Username   = $_ENV['EMAIL'];                     //SMTP username
+            $mail->Password   = $_ENV['PASS'];                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
             $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
-            $mail->setFrom($_ENV['email'], 'UpTask');
+            $mail->setFrom($_ENV['EMAIL'], 'UpTask');
             $mail->addAddress($this->email, $this->nombre);     //Add a recipient
         
             //Content
